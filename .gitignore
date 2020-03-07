@@ -1,0 +1,4 @@
+tmp/*
+.refresh
+.git/*
+!tmp/main.pdf

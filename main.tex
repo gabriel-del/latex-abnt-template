@@ -1,0 +1,129 @@
+% Contribua em https://github.com/gabrielpra1/relatorio-estagio-das
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% Para impressão simples. Para impressão frente e verso, use twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage[brazilian,hyperpageref]{backref}
+% Escolha um dos formatos de citação:
+% Citação estilo IEEE: "Lorem ipsum [1]."
+\usepackage[num]{abntex2cite}
+\citebrackets[]
+% Citação estilo "Lorem ipsum (Autor, 1986)."
+%\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+  extendedchars=false
+  escapeinside="
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  %numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+\lstset{style=mystyle}
+\graphicspath{ {./pictures/} }
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backref}{}
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 Nenhuma citação no texto.
+	\or Citado na página #2.
+	\else Citado #1 vezes nas páginas #2.
+	\fi}
+\titulo{Calibração Automática de Fluxômetro}
+\autor{Gabriel Del Cesare Barros}
+\local{Recife}
+\data{2020}
+\orientador{Emery Cleiton Cabral}
+\coorientador{} % Deixar vazio caso não haja
+\instituicao{
+  UNIVERSIDADE FEDERAL DE PERNAMBUCO
+  \par
+  CENTRO DE TECNOLOGIA E GEOCIÊNCIAS
+  \par
+  DEPARTAMENTO DE ENGENHARIA BIOMÉDICA}
+\tipotrabalho{Relatório de Estágio}
+\preambulo{Relatório submetido à Universidade Federal de Pernambuco como requisito para a aprovação na disciplina \textbf{IN435 - Estágio Hospitalar ou Industrial} do curso de Graduação em Engenharia Biomédica.}
+\definecolor{blue}{RGB}{41,5,195}
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       % false: boxed links; true: colored links
+    	linkcolor=black,     % color of internal links
+    	citecolor=blue,      % color of links to bibliography
+    	filecolor=magenta,   % color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+\makeindex
+\begin{document}
+\input{etc/capa}
+\makeatletter
+  \input{etc/folhaderosto}
+\makeatother
+\makeatletter
+% \input{etc/folhadeaprovacao}
+% \includepdf{folhadeaprovacao_final.pdf}
+\makeatletter
+% \input{etc/dedicatoria}
+% \input{etc/agradecimentos}
+% \input{etc/epigrafe}
+\input{etc/resumo-abstract}
+\input{etc/listas.tex}
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+\textual
+\input{documents/introducao.tex}
+\input{documents/o_cancer_no_mundo.tex}
+\input{documents/inteligencia_computacional_e_saude.tex}
+\input{documents/os_metodos_de_analise.tex}
+\input{documents/o_script_do_cancer_de_mama.tex}
+\input{documents/conclusao.tex}
+\pagebreak
+\input{documents/trabalhos_futuros.tex}
+\phantompart
+\postextual
+\bibliography{bibliography}
+% \input{etc/apendice}
+% \input{etc/anexos}
+\phantompart
+\printindex
+\end{document}
