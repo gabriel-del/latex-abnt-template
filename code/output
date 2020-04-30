@@ -1,0 +1,10 @@
+KneighborsClassifier:	0.9297619047619048	(n_neighbors=8)
+DecisionTreeClassifier:	0.9280701754385964	(max_depth=5)
+RandomForestClassifier:	0.9649122807017543	(max_depth=80)
+SuppotVectorMachine:	0.9051065162907269
+GaussianNB:		0.9367794486215537
+MLPClassifier:		0.8963032581453634
+
+Best Functions is:
+RandomForestClassifier:	0.9649122807017543	(max_depth=80)
+
