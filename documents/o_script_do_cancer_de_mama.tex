@@ -1,147 +1,89 @@
 \chapter{O script do cancer de mama}
 \label{chapter:o_script_do_cancer_de_mama}
 
-O script começa com a importação da biblioteca “Pandas”, definida anteriormente, na primeira linha e em seguida vários datasets do Scikit-learn: 
+\section{Validação Cruzada}
 
-  KNeighborsClassifier, LigisticRegression, cross\_val\_score, DecisionTreeClassifier, RandomForestClassifier,        GaussianNB, MLPClassifier. 
+Validação cruzada é um método de aprendizado de máquina em que usasse-se uma
+porcentagem para teste e outra para treinamanto.
 
-Esses atributos serão utilizados posteriormente, para a execução do script, porém sua importação é de extrema importância.
-
-
-\begin{lstlisting}[language=Python, caption=Importação de bibliotecas]
-import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neural_network import MLPClassifier
-from sklearn.svm import SVC
-\end{lstlisting}
-
-Em seguida há uma configuração para melhorar a visualização do script, onde há a retirada de avisos indesejados, que possam vir distorcer a visualização.
-
-\begin{lstlisting}[language=Python, caption=Ignorar Avisos]
-import warnings
-warnings.filterwarnings('ignore')
-\end{lstlisting}
-
-Declaração da lista e ler o arquivo data.csv do banco de dados do câncer de Mama o qual será analisado.
-\begin{lstlisting}[language=Python, caption=Ler arquivo data.csv]
-lista = []
-cancer = pd.read_csv('./data.csv', index_col=0)
-\end{lstlisting}
-
-Separação em matrizes “X” e “Y”, com o “Y” sendo o diagnóstico e o “X” os atributos. E início do loop que permitirá à procura das informações da base para realizar a análise.
-\begin{lstlisting}[language=Python, caption=Separar matrizes]
-diag = {'M':0, 'B':1}
-cancer.diagnosis = [diag[item] for item in cancer.diagnosis]
-X = cancer.as_matrix(cancer.columns[1:31])
-y = cancer.as_matrix(['diagnosis'])
-\end{lstlisting}
+Por exemplo, divide-se o conjunto de dados em $10$ partes e usa-se 9 para fazer o
+treinamento e os outros $10\%$ para testar como foi o aprendizado.
+Em seguida, usa-se outras $9$ partes do mesmo dado, e testa com a outra parte
+que restou, e continua até que tenha-se concluido todas as combinações.
 
 
+\section{Sintaxe}
+O Código está estruturado da seguinte forma:
 
-Então as funções responsáveis pela análise dos atributos:
-K-Nearest Neighbors:
-\begin{lstlisting}[language=Python, caption=KNeighborsClassifier]
-knn = KNeighborsClassifier(n_neighbors = 5, weights='uniform')
-scores = cross_val_score(knn, X, y, cv=5, scoring='accuracy')
-lista.append([scores.mean(),scores.std()])
-\end{lstlisting}
-
-Decision Tree:
-\begin{lstlisting}[language=Python, caption=DecisionTreeClassifier]
-tree = DecisionTreeClassifier(max_depth=3, random_state=0)
-scores = cross_val_score(tree, X, y, cv=5, scoring='accuracy')
-lista.append([scores.mean(),scores.std()])
-\end{lstlisting}
-
-Randon Forest:
-\begin{lstlisting}[language=Python, caption=RandomForesClassifier]
-forest = RandomForestClassifier(n_estimators=50, random_state=0)
-scores = cross_val_score(forest, X, y, cv=5, scoring='accuracy')
-\end{lstlisting}
-
-Suport Vector Machine:
-\begin{lstlisting}[language=Python, caption=SVC]
+\begin{lstlisting}[language=Python, caption=Sintaxe Simples]
 svm = SVC(kernel='poly',degree=1)
-scores = cross_val_score(svm, X, y, cv=5, scoring='accuracy')
-\end{lstlisting}
-Naive Bayes:
-\begin{lstlisting}[language=Python, caption=GaussianNB]
-gnb = GaussianNB()
-scores = cross_val_score(gnb, X, y, cv=5, scoring='accuracy')
-\end{lstlisting}
-
-Artificial Neural Network:
-\begin{lstlisting}[language=Python, caption=MLPClassifier]
-mlp = MLPClassifier(solver='adam', alpha=0.0001, hidden_layer_sizes=(10,20,40), random_state=42, learning_rate='constant', learning_rate_init=0.01, max_iter=100, activation='logistic', momentum=0.9, tol=0.0001)
-scores = cross_val_score(mlp, X, y, cv=5, scoring='accuracy')
+scores = cross_val_score(svm, X, y, cv=10, scoring='accuracy')
+function_print = 'SuppotVectorMachine:\t' + str(scores.mean())
+print(function_print)
+if scores.mean() > best_score:
+  best_score = scores.mean()
+  best_function=function_print
 \end{lstlisting}
 
-Finalizando tem-se as informações de saída, utilizadas para o diagnóstico e checar a eficácia do Script:
-\begin{lstlisting}[language=Python, caption=Média e Desvio]
-print('Media:', scores.mean())
-print('Desvio:', scores.std())
+Primeiramente, define-se a função que será usada.
+Em seguida usa-se a validação cruzada,
+exibe-se a média dos resultados.
+E por último checa-se se foi a função com o melhor resultado para exibir ao final do script.
+
+Nesta outra função há um parâmetro chamado "max\_depth" que será variado de $1$ a $9$,
+para capturar o melhor resultado.
+
+\begin{lstlisting}[language=Python, caption=Sintaxe com Parâmetro]
+max_score = 0
+for n in range(1,10):
+  tree = DecisionTreeClassifier(max_depth=n, random_state=0)
+  scores = cross_val_score(tree, X, y, cv=10, scoring='accuracy')
+  if  scores.mean() > max_score:
+    max_score = scores.mean()
+    max_n = n
+function_print = 'DecisionTreeClassifier:\t' + str(max_score) + '\t(max_depth=' + str(max_n) + ')'
+print(function_print)
+if max_score > best_score:
+  best_score = max_score
+  best_function=function_print
 \end{lstlisting}
 
-Cria-se uma tabela com os valores obtidos:
-\begin{lstlisting}[language=Python, caption=Resultados]
-df = pd.DataFrame(lista, columns = ["Acuracia","Variancia"])
-df.to_csv(r'resultados.csv')
-\end{lstlisting}
+O código final completo encontra-se no apêndice \ref{app:code}, seção
+\ref{lst:code}, página \pageref{lst:code}.
 
-A junção de cada parte de cada etapa do script trouxe a seguinte resolução:
-\begin{lstlisting}[language=Python, caption=Código completo]
-import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neural_network import MLPClassifier
-from sklearn.svm import SVC
-import warnings
-warnings.filterwarnings('ignore')
-lista = []
+E sua execução resultou nos dados encontrados na tabela \ref{tab:resultado}.
 
-cancer = pd.read_csv('./data.csv', index_col=0)
+\setlength{\arrayrulewidth}{0.6mm}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c| }
+ \hline
+ Função                   & Acurácia           & Parâmetro  \\
+ \hline
+ KneighborsClassifier     & 0.9297619047619048 & n\_neighbors = 8  \\
+ DecisionTreeClassifier   & 0.9280701754385964 & max\_depth = 5    \\
+ RandomForestClassifier   & 0.9649122807017543 & max\_depth = 80   \\
+ SuppotVectorMachine      & 0.9051065162907269 &                   \\
+ GaussianNB               & 0.9367794486215537 &                   \\
+ MLPClassifier            & 0.8963032581453634 &                   \\
+ \hline
+ \hline
+ \multicolumn{3}{|c|}{ Melhor Função} \\
+ \hline
+ RandomForestClassifier:  & 0.9649122807017543 & max\_depth = 80   \\
+ \hline
+\end{tabular}
+  \caption{Resultado Final}
+\label{tab:resultado}
+\end{table}
 
-diag = {'M':0, 'B':1}
-cancer.diagnosis = [diag[item] for item in cancer.diagnosis]
-X = cancer.as_matrix(cancer.columns[1:31])
-y = cancer.as_matrix(['diagnosis'])
-knn = KNeighborsClassifier(n_neighbors = 1, weights='uniform')
-scores = cross_val_score(knn, X, y, cv=5, scoring='accuracy')
-lista.append([scores.mean(),scores.std()])
+Observa-se pelos resultados na tabela que com esse código simples, consegue-se uma acurácia de $96\%$
+utilizando o classificador "Random Forest" com "Max Depth" de $80$.
 
-tree = DecisionTreeClassifier(max_depth=3, random_state=0)
-scores = cross_val_score(tree, X, y, cv=5, scoring='accuracy')
-lista.append([scores.mean(),scores.std()])
 
-forest = RandomForestClassifier(n_estimators=50, random_state=0)
-scores = cross_val_score(forest, X, y, cv=5, scoring='accuracy')
 
-svm = SVC(kernel='poly',degree=1)
-scores = cross_val_score(svm, X, y, cv=5, scoring='accuracy')
 
-gnb = GaussianNB()
-scores = cross_val_score(gnb, X, y, cv=5, scoring='accuracy')
 
-mlp = MLPClassifier(solver='adam', alpha=0.0001, hidden_layer_sizes=(10,20,40), random_state=42, learning_rate='constant', learning_rate_init=0.01, max_iter=100, activation='logistic', momentum=0.9, tol=0.0001)
-scores = cross_val_score(mlp, X, y, cv=5, scoring='accuracy')
-
-print('Media:', scores.mean())
-print('Desvio:', scores.std())
-
-df = pd.DataFrame(lista, columns = ["Acuracia","Variancia"])
-df.to_csv(r'resultados.csv')
-\end{lstlisting}
-
-Por fim, o Script conseguiu executar os comandos juntamente com as funções demonstradas anteriormente, e apresentou como resultados, após testes, uma acurácia de 88\% e um desvio padrão de 2\% na detecção e análise de tumores malignos de câncer.
 
 
 

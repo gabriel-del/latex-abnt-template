@@ -4,12 +4,12 @@
 	12pt,				% tamanho da fonte
 	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
 	oneside,			% Para impressão simples. Para impressão frente e verso, use twoside
-	a4paper,			% tamanho do papel. 
+	a4paper,			% tamanho do papel.
 	% -- opções do pacote babel --
 	english,			% idioma adicional para hifenização
 	brazil				% o último idioma é o principal do documento
 	]{abntex2}
-\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage{lmodern}			% Usa a fonte Latin Modern
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
@@ -39,18 +39,19 @@
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
   basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=false,         
-  breaklines=true,                 
-  captionpos=b,                    
-  keepspaces=true,                 
-  %numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,                
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  %numbers=left,
+  numbersep=5pt,
+  showspaces=false,
   showstringspaces=false,
   showtabs=false,
   tabsize=2
 }
 \lstset{style=mystyle}
+\renewcommand{\lstlistingname}{Código}
 \graphicspath{ {./pictures/} }
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
 \renewcommand{\backref}{}
@@ -77,11 +78,11 @@
 \makeatletter
 \hypersetup{
      	%pagebackref=true,
-		pdftitle={\@title}, 
+		pdftitle={\@title},
 		pdfauthor={\@author},
     	pdfsubject={\imprimirpreambulo},
 	    pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
 		colorlinks=true,       % false: boxed links; true: colored links
     	linkcolor=black,     % color of internal links
     	citecolor=blue,      % color of links to bibliography
@@ -122,7 +123,7 @@
 \phantompart
 \postextual
 \bibliography{bibliography}
-% \input{etc/apendice}
+\input{etc/apendice}
 % \input{etc/anexos}
 \phantompart
 \printindex

@@ -15,13 +15,13 @@ warnings.filterwarnings('ignore')
 # Banco de Dados
 cancer = pd.read_csv('./data.csv', index_col=0)
 
-# Configurar Variáveis
+# Configurar Variaveis
 diag = {'M':0, 'B':1}
 cancer.diagnosis = [diag[item] for item in cancer.diagnosis]
 X = cancer[cancer.columns[1:31]].to_numpy()
 y = cancer[['diagnosis']].to_numpy()
 
-# Funções
+# Funcoes
 best_score = 0
 max_score = 0
 for n in range(1,10):
@@ -66,16 +66,16 @@ svm = SVC(kernel='poly',degree=1)
 scores = cross_val_score(svm, X, y, cv=10, scoring='accuracy')
 function_print = 'SuppotVectorMachine:\t' + str(scores.mean())
 print(function_print)
-if max_score > best_score:
-  best_score = max_score
+if scores.mean() > best_score:
+  best_score = scores.mean()
   best_function=function_print
 
 gnb = GaussianNB()
 scores = cross_val_score(gnb, X, y, cv=10, scoring='accuracy')
 function_print = 'GaussianNB:\t\t' + str(scores.mean())
 print(function_print)
-if max_score > best_score:
-  best_score = max_score
+if scores.mean() > best_score:
+  best_score = scores.mean()
   best_function=function_print
 
 mlp = MLPClassifier(solver='adam', alpha=0.0001, hidden_layer_sizes=(10,20,40),
@@ -84,10 +84,10 @@ activation='logistic', momentum=0.9, tol=0.0001)
 scores = cross_val_score(mlp, X, y, cv=10, scoring='accuracy')
 function_print = 'MLPClassifier:\t\t' + str(scores.mean())
 print(function_print)
-if max_score > best_score:
-  best_score = max_score
+if scores.mean() > best_score:
+  best_score = scores.mean()
   best_function=function_print
 
 # Resultados
-print("\nBest Functions is:")
+print("\nMelhor Funcao:")
 print(best_function)

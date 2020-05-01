@@ -7,25 +7,28 @@
 \cleardoublepage
 % ---
 
-\def\lstlistlistingname{Lista de Códigos}
-\lstlistoflistings
+\renewcommand{\lstlistlistingname}{Lista de Códigos}
+\pdfbookmark[0]{\lstlistlistingname}{lol}
+\begin{KeepFromToc}
+\lstlistoflistings*
+\end{KeepFromToc}
 \cleardoublepage
 
 % ---
 % inserir lista de tabelas
 % ---
-% \pdfbookmark[0]{\listtablename}{lot}
-% \listoftables*
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
 % OPCIONAL
-% \cleardoublepage
+\cleardoublepage
 % ---
 
 % ---
 % inserir lista de abreviaturas e siglas
 % ---
 \begin{siglas}
-  \item[$t_E$] Tempo expiratório
-  \item[$t_I$] Tempo inspiratório
+  % \item[$t_E$] Tempo expiratório
+  % \item[$t_I$] Tempo inspiratório
   \item[UFPE] Universidade Federal de Pernambuco
 
 \end{siglas}
