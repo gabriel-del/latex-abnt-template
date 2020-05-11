@@ -1,21 +1,53 @@
-\chapter{O script do cancer de mama}
+\chapter{O Script do Câncer de Mama}
 \label{chapter:o_script_do_cancer_de_mama}
+
+
+Não foi exposto aqui o código final inteiro, por ser bastante extenso, encontra-se ao final do trabalho no apêndice \ref{app:code}, seção
+\ref{lst:code}, página \pageref{lst:code}, para quem se interessar, ler melhor.
+
+As funções que se referem ao aprendizado de máquina são a parte principal do código e onde pode haver dúvidas quanto a sintaxe.
+Portanto será explicado na seção \ref{sintaxe}.
+
+Para executar o script, precisa ter o python \cite{PYTHON} instalado,
+e então salvar o conteúdo do código no apêndice \ref{app:code} em um arquivo, por exemplo ``script.py'',
+e colocar na mesma pasta do arquivo com o banco de dados
+(\url{https://www.kaggle.com/uciml/breast-cancer-wisconsin-data/download}) \cite{BREASTCANCER}.
+Em seguida, no local onde estão os arquivos executa-se:
+
+\begin{lstlisting}[language=Python, caption=Executar Script.py]
+python script.py
+\end{lstlisting}
 
 \section{Validação Cruzada}
 
-Validação cruzada é um método de aprendizado de máquina em que usasse-se uma
-porcentagem para teste e outra para treinamanto.
+Antes de ir diretamente ao código, é necessário a compreensão da validação cruzada.
+A validação cruzada é um método de aprendizado de máquina em que utiliza-se uma
+porcentagem para teste e outra para treinamento, comumente $10\%$ para testes e $90\%$ para treinamento.
+Desta forma o script treina de diferentes formas melhorando sua confiabilidade.
 
-Por exemplo, divide-se o conjunto de dados em $10$ partes e usa-se 9 para fazer o
-treinamento e os outros $10\%$ para testar como foi o aprendizado.
-Em seguida, usa-se outras $9$ partes do mesmo dado, e testa com a outra parte
-que restou, e continua até que tenha-se concluido todas as combinações.
 
+Por exemplo, na figura \ref{fig:crossvalidation}, a base de dados foi dividida em 6,
+e em cada iteração usa-se uma parte diferente como teste, e o restante para o treinamento.
+
+\begin{figure}[H]
+\begin{center}
+\caption{Validação Cruzada}
+\includegraphics[width=12cm]{crossvalidation}
+\label{fig:crossvalidation}
+\end{center}
+\legend{Fonte: \url{https://didatica.tech/wp-content/uploads/2019/10/Kfold_Resultados.png} \cite{CROSSVALIDATION} }
+\end{figure}
 
 \section{Sintaxe}
-O Código está estruturado da seguinte forma:
+\label{sintaxe}
+Primeiramente será explicada a função ``Máquina de Vetor de Suporte'',
+ela é chamada na primeira linha do código \ref{alg:simples}.
 
-\begin{lstlisting}[language=Python, caption=Sintaxe Simples]
+Na segunda linha é chamada a validação cruzada $cros\_val\_score$ que salva na variável $scores$ um vetor com a acurácia das $10$ iterações.
+Na terceira e quarta linha, informa na tela a média dos valores das acurácias.
+A quinta, sexta e sétima servem para ao final do script, informar qual foi a função com o melhor desempenho.
+
+\begin{lstlisting}[language=Python, caption=Sintaxe Simples, label=alg:simples]
 svm = SVC(kernel='poly',degree=1)
 scores = cross_val_score(svm, X, y, cv=10, scoring='accuracy')
 function_print = 'SuppotVectorMachine:\t' + str(scores.mean())
@@ -25,15 +57,15 @@ if scores.mean() > best_score:
   best_function=function_print
 \end{lstlisting}
 
-Primeiramente, define-se a função que será usada.
-Em seguida usa-se a validação cruzada,
-exibe-se a média dos resultados.
-E por último checa-se se foi a função com o melhor resultado para exibir ao final do script.
+Por último será mostrada a função ``Árvore de decisão'' no código \ref{alg:parametro},
+pois ela possui um parâmetro $max\_depth=n$ que pode variar,
+e deseja-se saber para qual $n$ ela consegue a melhor acurácia.
 
-Nesta outra função há um parâmetro chamado "max\_depth" que será variado de $1$ a $9$,
-para capturar o melhor resultado.
+Para isso o $n$ será variado de $1$ a $9$, como mostra as linhas $1$ e $2$.
+As linhas $5$, $6$ e $7$ salvam o $n$ com a maior acurácia juntamente com o resultado.
+O restante é igual ao código \ref{alg:simples}.
 
-\begin{lstlisting}[language=Python, caption=Sintaxe com Parâmetro]
+\begin{lstlisting}[language=Python, caption=Sintaxe com Parâmetro, label=alg:parametro]
 max_score = 0
 for n in range(1,10):
   tree = DecisionTreeClassifier(max_depth=n, random_state=0)
@@ -48,8 +80,8 @@ if max_score > best_score:
   best_function=function_print
 \end{lstlisting}
 
-O código final completo encontra-se no apêndice \ref{app:code}, seção
-\ref{lst:code}, página \pageref{lst:code}.
+Assim o script consegue definir a melhor função e parâmetro a partir da acurácia, em determinar se o tumor é maligno ou benigno.
+
 
 E sua execução resultou nos dados encontrados na tabela \ref{tab:resultado}.
 
@@ -78,7 +110,7 @@ E sua execução resultou nos dados encontrados na tabela \ref{tab:resultado}.
 \end{table}
 
 Observa-se pelos resultados na tabela que com esse código simples, consegue-se uma acurácia de $96\%$
-utilizando o classificador "Random Forest" com "Max Depth" de $80$.
+utilizando o classificador ``Floresta Aleatória'' com $max\_depth=80$.
 
 
 

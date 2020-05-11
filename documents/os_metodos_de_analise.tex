@@ -1,63 +1,65 @@
 \chapter{Os Métodos de Análise}
 \label{chapter:os_metodos_de_analise}
 
-\section{\textbf{K-nearest Neighbors}}
+\section{\textbf{K Vizinhos Mais Próximos}}
 
-Existem vários métodos de análise de algoritmos, um dos mais simples é o “K-Nearest Neighbors”, utilizado no Script, que funciona da seguinte forma:
+Existem vários métodos de análise de algoritmos, um dos mais simples e conhecidos é o ``K Vizinhos Mais Próximos'',
+utilizado no Script, que funciona da seguinte forma:
 
-Observando a figura \ref{fig:knearestneighbors}, observa-se um gráfico com um conjunto de bolas amarelas e roxas; também é possível perceber uma bola desconhecida, destacada na cor vermelha. Para calcular se ela é roxa ou amarela, o algoritmo do KNN determinará a sua cor, de acordo com as N bolas mais próximas.
+Observando a figura \ref{fig:knearestneighbors}, observa-se um gráfico com um conjunto de bolas amarelas e roxas;
+também é possível perceber uma bola desconhecida, destacada na cor vermelha.
+Para calcular se ela é roxa ou amarela, o algoritmo do KNN determinará a sua cor, de acordo com as $N$ bolas mais próximas.
 
-Por exemplo, caso N seja igual a 3, a bola desconhecida será classificada como roxa e no caso de N igual à 6 será classificada como amarela:
+Por exemplo, caso $N$ seja igual a $3$,
+a bola desconhecida será classificada como roxa e no caso de $N$ igual à $6$ será classificada como amarela.
 
 \begin{figure}[!htb]
 \begin{center}
-\caption{K-nearest Neighbors}
+\caption{K Vizinhos Mais Próximos}
 \includegraphics[width=12cm]{knearestneighbors}
 \label{fig:knearestneighbors}
 \end{center}
-\legend{Fonte: \url{https://miro.medium.com/max/1506/0*jqxx3-dJqFjXD6FA}}
-\cite{KNN}
+\legend{Fonte: \url{https://miro.medium.com/max/1506/0*jqxx3-dJqFjXD6FA} \cite{KNN} }
 \end{figure}
 
+\section{\textbf{Árvore de Decisão}}
 
-
-
-\section{\textbf{Decision tree}}
-
-A chamada “Árvore de Decisão”, define um novo elemento com base em rotinas pré-estabelecidas. Por exemplo, se há um banco de dados de pessoas que foram jogar tênis com base na situação do clima, pode-se chegar a seguinte árvore de decisão:
+Define um novo elemento com base em rotinas pré-estabelecidas.
+Por exemplo, se há um banco de dados de pessoas que foram jogar tênis com base na situação do clima,
+pode-se chegar a seguinte árvore de decisão da figura \ref{fig:decisiontree}.
 
 
 \begin{figure}[!htb]
 \begin{center}
-\caption{Decision Tree}
+\caption{Árvore de Decisão}
 \includegraphics[width=12cm]{decisiontree}
+\label{fig:decisiontree}
 \end{center}
-\legend{Fonte: \url{https://slideplayer.com.br/slide/358847/2/images/5/\%C3\%81rvores+de+Decis\%C3\%A3o+-+Exemplo.jpg}}
-\cite{ARVOREDECISAO}
+\legend{Fonte: \url{https://slideplayer.com.br/slide/358847/2/images/5/\%C3\%81rvores+de+Decis\%C3\%A3o+-+Exemplo.jpg}\cite{ARVOREDECISAO}}
 \end{figure}
 
 E então quando alguém perguntar se haverá jogo de tênis no dia, ela responderá de acordo com o clima, seguindo a árvore de decisão.
 
-\section{\textbf{Random Forest}}
+\section{\textbf{Floresta Aleatória}}
 
-Algoritmo que cria várias árvores de decisões, definido anteriormente, e as combinam para obter uma predição com maior acurácia e mais estável:
+Algoritmo que cria várias árvores de decisões,
+definido anteriormente, e as combinam para obter uma predição com maior acurácia e mais estável, assim como na figura \ref{fig:randomforest}.
 
 
 
 \begin{figure}[!htb]
 \begin{center}
-\caption{Random Forest}
+\caption{Floresta Aleatória}
 \includegraphics[width=12cm]{randomforest}
+\label{fig:randomforest}
 \end{center}
-\legend{Fonte: \url{https://www.paradigmadigital.com/techbiz/machine-learning-dummies/}}
-\cite{RANDOMFOREST}
+\legend{Fonte: \url{https://www.paradigmadigital.com/techbiz/machine-learning-dummies/} \cite{RANDOMFOREST} }
 \end{figure}
 
 
+\section{\textbf{Máquina de Vetor de Suporte}}
 
-\section{\textbf{Support Vector machine}}
-
-O classificador intitulado de “Máquina de Vetores de Suporte” categoriza, com base em uma divisão dos dados. 
+O classificador categoriza, com base em uma divisão dos dados. 
 
 Por exemplo, na figura \ref{fig:suportvectormachine}, há quadrados e círculos de cores vermelhas e azuis, respectivamente.
 Pode-se dividi-las com qualquer uma das retas do quadrante esquerdo.
@@ -68,24 +70,22 @@ logo se encontra a melhor reta para separá-las.
 
 \begin{figure}[!htb]
 \begin{center}
-\caption{Suport Vector Machine}
+\caption{Máquina de Vetor de Suporte}
 \includegraphics[width=12cm]{suportvectormachine}
 \label{fig:suportvectormachine}
 \end{center}
-\legend{Fonte: \url{https://www.codigofluente.com.br/wp-content/uploads/2019/06/SVM04.png}}
-\cite{SVM}
+\legend{Fonte: \url{https://www.codigofluente.com.br/wp-content/uploads/2019/06/SVM04.png} \cite{SVM} }
 \end{figure}
 
 Em casos mais complexos utilizam-se hiperplanos.
 
-
 \section{\textbf{Naive bayes}}
 
-O classificador “Naive Bayes” é baseado no Teorema de Bayes. Ele desconsidera a correlação entre as variáveis, e por isso é chamado de “ingênuo”.
+O classificador Naive Bayes é baseado no Teorema de Bayes. Ele desconsidera a correlação entre as variáveis, e por isso é chamado de “ingênuo”.
 
 Um exemplo de sua utilização seria para considerar se um fruto qualquer é uma maçã, assim, analisa-se se ele é vermelho, redondo e de aproximadamente 3 polegadas (Características da fruta colocada em exemplo). De acordo com o Teorema de Bayes, cada um desses fatores contribui independentemente para a probabilidade de que este fruto seja realmente uma maçã.
 
-Quando se lida com muitos dados, sendo eles todos independentes, assumisse que distribuição ocorre de acordo com uma gaussiana simples, por isso usa-se o classificador GauissanNB para calculá-lo.
+Quando se lida com muitos dados, sendo eles todos independentes, assume-se que a distribuição ocorre de acordo com uma gaussiana simples, por isso usa-se o classificador GauissanNB para calculá-lo.
 
 
 \begin{figure}[!htb]
@@ -93,9 +93,7 @@ Quando se lida com muitos dados, sendo eles todos independentes, assumisse que d
 \caption{Naive Bayes}
 \includegraphics[width=12cm]{naivebayes}
 \end{center}
-\legend{Fonte: \url{https://www.researchgate.net/profile/Paolo\_Dellaversana/publication/328020065/figure/fig5/AS:677213301121033@1538471641906/Naive-Bayes-classification-of-three-different-rock-types-based-on-nine-mineralogical.png}}
-
-\cite{NAIVEBAYES}
+\legend{Fonte: \url{https://www.researchgate.net/profile/Paolo\_Dellaversana/publication/328020065/figure/fig5/AS:677213301121033@1538471641906/Naive-Bayes-classification-of-three-different-rock-types-based-on-nine-mineralogical.png} \cite{NAIVEBAYES} }
 \end{figure}
 
 
@@ -103,7 +101,7 @@ Quando se lida com muitos dados, sendo eles todos independentes, assumisse que d
 
 A chamada, “Rede neural artificial” é um classificador que se baseia no sistema de redes neurais que utiliza o mecanismo de aprendizagem de pesos sinápticos de tal forma que a unidade de saída produza as respostas corretas para cada exemplo, realizando atualizações de forma dinâmica e interativa até chegar aos pesos corretos.
 
-É a mais parecida, com o sistema que ocorre no cérebro:
+É a mais parecida, com o sistema que ocorre no cérebro.
 
 
 \begin{figure}[!htb]
@@ -111,8 +109,7 @@ A chamada, “Rede neural artificial” é um classificador que se baseia no sis
 \caption{Artificial Neural Network}
 \includegraphics[width=12cm]{mlp}
 \end{center}
-\legend{Fonte: \url{https://www.researchgate.net/profile/Anderson\_Oliveira6/publication/240772105/figure/fig2/AS:667857415319554@1536241024122/Figura-1-Rede-Neural-Artificial-Multicamadas.png}}
-\cite{MLP}
+\legend{Fonte: \url{https://www.researchgate.net/profile/Anderson\_Oliveira6/publication/240772105/figure/fig2/AS:667857415319554@1536241024122/Figura-1-Rede-Neural-Artificial-Multicamadas.png} \cite{MLP} }
 \end{figure}
 
 

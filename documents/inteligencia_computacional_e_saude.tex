@@ -1,54 +1,81 @@
 \chapter{Inteligência Computacional e Saúde}
 \label{chapter:inteligencia_computacional_e_saude}
 
-A inteligência Computacional é uma ferramenta de computação que automatiza processos complexos, como por exemplo a identificação e categorização de imagens. E já tem muito espaço na saúde, uma área de extrema relevância à sociedade, que requer atenção e agilidade, pois cuida das diversas aplicações neste ramo, estão:
+A inteligência Computacional é uma ferramenta de computação que automatiza processos complexos,
+como por exemplo a identificação e categorização de imagens. E já tem muito espaço na saúde,
+uma área de extrema relevância à sociedade, que requer atenção e agilidade, pois cuida das diversas aplicações neste ramo, estão:
 
 \begin{itemize}
-\item Tratamento de doenças: Se refere a capacidade dos computadores de auxiliar no tratamento das patologias. Por exemplo o “Watson”, algoritmo desenvolvido pela International Business (IBM), que informa os vários tratamentos possíveis para cada caso, informando efeitos colaterais e o grau de risco de cada uma.
+\item Tratamento de doenças: Se refere a capacidade dos computadores de auxiliar no tratamento das patologias.
+  Por exemplo o “Watson”, algoritmo desenvolvido pela IBM,
+    que informa os vários tratamentos possíveis para cada caso, informando efeitos colaterais e o grau de risco de cada uma.
 
-\item Acurácia no resultado de exames: Existem algoritmos computacionais, atualmente, que conseguem ser mais precisos em comparação à alguns exames médicos, por exemplo um algoritmo desenvolvido na Alemanha, EUA e China, que superou especialistas em retina na identificação de diagnósticos no exame de tomografia óptica
+\item Acurácia no resultado de exames: Existem algoritmos computacionais,
+  atualmente, que conseguem ser mais precisos em comparação à alguns exames médicos,
+    por exemplo um algoritmo desenvolvido na Alemanha, EUA e China,
+    que superou especialistas em retina na identificação de diagnósticos no exame de tomografia óptica
 
-\item Correlação de sintomas: O TensorFlow, por exemplo, uma biblioteca desenvolvida pela Google, consegue identificar retinopatia diabética através de semelhança de imagens, e consegue fazer associação de sintomas com taxa de acerto semelhante aos especialistas da área.
+\item Correlação de sintomas: O TensorFlow, por exemplo,
+  uma biblioteca desenvolvida pela Google, consegue identificar retinopatia diabética através de semelhança de imagens,
+    e consegue fazer associação de sintomas com taxa de acerto semelhante aos especialistas da área.
 
-\item Recuperação de dados: A partir da memória da IC, facilita-se a recuperação dos arquivos com os dados e ficha médica dos pacientes, quando houver necessidade.
+\item Recuperação de dados: A partir da memória da IC,
+  facilita-se a recuperação dos arquivos com os dados e ficha médica dos pacientes, quando houver necessidade.
 
-\item Alertas de emergência: Pode-se criar alertas sobre mudanças no quadro dos pacientes, os enviando ao profissional responsável, sendo de extrema importância principalmente em emergências.
+\item Alertas de emergência: Pode-se criar alertas sobre mudanças no quadro dos pacientes,
+  os enviando ao profissional responsável, sendo de extrema importância principalmente em emergências.
 \end{itemize}
 
- Aplicação de Inteligência Computacional para o diagnóstico de câncer
-
-Para o desenvolvimento da Inteligência Computacional, por meio do Script, que auxiliará na avaliação médica, foram utilizadas as seguintes ferramentas:
+Para o desenvolvimento da Inteligência Computacional, por meio do Script, que auxiliará na avaliação médica,
+foram utilizadas as seguintes ferramentas:
 
 \section{\textbf{Phyton}}
 
-Python é uma linguagem de programação, no ranking das mais utilizadas do mundo, ela foi criada por Guido Van Rossum, com o objetivo de proporcionar produtividade e legibilidade na realização de projetos computacionais. \cite{PYTHON}
+Python é uma linguagem de programação, no ranking das mais utilizadas do mundo, ela foi criada por Guido Van Rossum,
+com o objetivo de proporcionar produtividade e legibilidade na realização de projetos computacionais. \cite{PYTHON}
 
-A sua sintaxe é simples, sendo comparada até a um pseudocódigo executável. Usa a chamada “Identação”, que é um recuo no código, em relação a sua margem, para marcar blocos. Também é uma linguagem de baixo uso de caracteres especiais e palavras chaves.
+A sua sintaxe é simples, sendo comparada até a um pseudocódigo executável.
+Usa a chamada “Identação”, que é um recuo no código, em relação a sua margem, para marcar blocos.
+Também é uma linguagem de baixo uso de caracteres especiais e palavras chaves.
 
-Apesar de ser uma linguagem comumente utilizada para IA, ainda não é simples de encontrar artigos e documentos que instruam para a realização de um programa básico, a fim de iniciar os primeiros passos na área
+Apesar de ser uma linguagem comumente utilizada para IC,
+ainda não é simples de encontrar artigos e documentos que instruam para a realização de um programa básico,
+a fim de iniciar os primeiros passos na área
 
 Assim, será utilizado no Script de Câncer de mama as seguintes ferramentas básicas e de fácil acesso:
 
 \begin{itemize}
-\item Pandas - é uma biblioteca do Python, que fornece ferramentas de análise e estruturas de dados de alta performance e de simples utilização.\cite{PANDAS}
+\item Pandas - é uma biblioteca do Python,
+  que fornece ferramentas de análise e estruturas de dados de alta performance e de simples utilização.\cite{PANDAS}
 \item Scikit-learn - é outra biblioteca do Python que inclui alguns algoritmos de classificação, regressão e agrupamento.\cite{SCIKIT}
 \end{itemize}
 
 \section{\textbf{A base de dados}}
 
-Para comprovar a correlação do diagnóstico de câncer a partir dos parâmetros dos exames, e “ensinar” a inteligência artificial a tentar descobrir o provável diagnóstico, foi-se utilizado uma base de dados de autoria da “Breast Cancer Wisconsin” chamada por eles como “Diagnostic Dataset”, presente no site:
+Para comprovar a correlação do diagnóstico de câncer a partir dos parâmetros dos exames,
+e ensinar a inteligência computacional a tentar descobrir o provável diagnóstico,
+foi-se utilizado uma base de dados de autoria da “Breast Cancer Wisconsin” chamada por eles como “Diagnostic Dataset”, presente no site:
 (\url{https://www.kaggle.com/uciml/breast-cancer-wisconsin-data})\cite{BREASTCANCER}
 
-É um conjunto de registros de resultados de exames utilizados para detecção do Câncer de mama, comumente utilizada para aprendizado e aplicações reais. Ela foi criada em 1995 por Dr. William H. Wolberg, W. Nick Street e Olvi L. Mangasarian na universidade de Wisconsin.
+É um conjunto de registros de resultados de exames utilizados para detecção do Câncer de mama,
+comumente utilizada para aprendizado e aplicações reais.
+Ela foi criada em 1995 por Dr. William H. Wolberg, W. Nick Street e Olvi L. Mangasarian na universidade de Wisconsin.
 
-Possui 569 instâncias, que estão correlacionadas com as pessoas que participaram da coleta. E 32 tipos de atributos que são os dados coletados de cada análise. Entre os atributos está o diagnóstico final dado pelo médico informando se o tumor é maligno ou benigno.
+Possui 569 instâncias, que estão correlacionadas com as pessoas que participaram da coleta.
+E 32 tipos de atributos que são os dados coletados de cada análise.
+Entre os atributos está o diagnóstico final dado pelo médico informando se o tumor é maligno ou benigno.
 
-Os dados dessa base foram obtidos através de diversos procedimentos de diagnóstico médico. Dentre eles, há a imagem digitalizada de um aspirado por agulha fina (PAAF) de um tecido mamário que tem como função determinar os aspectos dos núcleos celulares presentes no tecido.
+Os dados dessa base foram obtidos através de diversos procedimentos de diagnóstico médico.
+Dentre eles, há a imagem digitalizada de um aspirado por agulha fina (PAAF)
+de um tecido mamário que tem como função determinar os aspectos dos núcleos celulares presentes no tecido.
 
-Essa base é importante para o desenvolvimento do Script do Câncer de mama pois ela permite analisar os atributos coletados para “ensinar” a inteligência artificial a tentar descobrir o provável diagnóstico.
+Essa base é importante para o desenvolvimento do Script do Câncer de mama
+pois ela permite analisar os atributos coletados para ensinar a inteligência computacional a tentar descobrir o provável diagnóstico.
 
 Os atributos coletados na base de dados determinam as características do tumor maligno, como:
 
-Raio, textura, perímetro, área, suavidade, compacidade, concavidade e os pontos côncavos presentes; simetria além da dimensão fractal. Para cada um desses parâmetros foram analisados a média, erro padrão e o "pior" ou mais largo (média dos 3 maiores valores).
+Raio, textura, perímetro, área, suavidade, compacidade, concavidade e os pontos côncavos presentes;
+simetria, além da dimensão fractal.
+Para cada um desses parâmetros foram analisados a média, erro padrão e o ``pior'' ou mais largo (média dos 3 maiores valores).
 
 

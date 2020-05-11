@@ -7,10 +7,22 @@
 \cleardoublepage
 % ---
 
-\renewcommand{\lstlistlistingname}{Lista de Códigos}
-\pdfbookmark[0]{\lstlistlistingname}{lol}
+% ---
+% inserir lista de códigos
+% ---
+\renewcommand*{\lstlistlistingname}{Lista de Códigos}
+
+\let\oldlstlistoflistings\lstlistoflistings
+\renewcommand{\lstlistoflistings}{%
+  \begingroup%
+  \let\oldnumberline\numberline
+  \renewcommand{\numberline}{\lstlistingname~\oldnumberline}%
+  \oldlstlistoflistings%
+  \endgroup}
+
+
 \begin{KeepFromToc}
-\lstlistoflistings*
+\lstlistoflistings
 \end{KeepFromToc}
 \cleardoublepage
 
@@ -29,7 +41,16 @@
 \begin{siglas}
   % \item[$t_E$] Tempo expiratório
   % \item[$t_I$] Tempo inspiratório
-  \item[UFPE] Universidade Federal de Pernambuco
+  \item[UFPE]   Universidade Federal de Pernambuco
+  \item[EUA]    Estados Unidos da América
+  \item[IACR]   International Association of cancer Registries
+  \item[IC]     Inteligência Computacional
+  \item[IBM]     International Business Machines Corporation
+  \item[IHQ]    Imunohistoquímicos
+  \item[INCA]   Instituto Nacional de Câncer
+  \item[OMS]    Organização Mundial de Saúde
+  \item[PAAF]   Punção Aspirativa por Agulha Fina
+  \item[PET-CT] \emph{Positron Emission Tomography - Computed Tomography}
 
 \end{siglas}
 % ---
