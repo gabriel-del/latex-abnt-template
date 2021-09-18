@@ -1,0 +1,98 @@
+\chapter{O Script do Câncer de Mama}
+\label{chapter:o_script_do_cancer_de_mama}
+
+
+No apêndice \ref{app:code}, seção
+\ref{lst:code}, página \pageref{lst:code}.
+Na seção \ref{sintaxe}.
+
+ \cite{PYTHON} 
+  \ref{app:code} 
+  
+(\url{https://www.kaggle.com/uciml/breast-cancer-wisconsin-data/download}) \cite{BREASTCANCER}.
+
+executa-se:
+
+\begin{lstlisting}[language=Python, caption=Executar Script.py]
+python script.py
+\end{lstlisting}
+
+\section{Validação Cruzada}
+
+Na figura \ref{fig:crossvalidation}
+
+\begin{figure}[H]
+\begin{center}
+\caption{Validação Cruzada}
+\includegraphics[width=12cm]{crossvalidation}
+\label{fig:crossvalidation}
+\end{center}
+\legend{Fonte: \url{https://didatica.tech/wp-content/uploads/2019/10/Kfold_Resultados.png} \cite{CROSSVALIDATION} }
+\end{figure}
+
+\section{Sintaxe}
+\label{sintaxe}
+É chamada na primeira linha do código \ref{alg:simples}.
+
+
+\begin{lstlisting}[language=Python, caption=Sintaxe Simples, label=alg:simples]
+svm = SVC(kernel='poly',degree=1)
+scores = cross_val_score(svm, X, y, cv=10, scoring='accuracy')
+function_print = 'SuppotVectorMachine:\t' + str(scores.mean())
+print(function_print)
+if scores.mean() > best_score:
+  best_score = scores.mean()
+  best_function=function_print
+\end{lstlisting}
+
+\ref{alg:parametro},
+
+\begin{lstlisting}[language=Python, caption=Sintaxe com Parâmetro, label=alg:parametro]
+max_score = 0
+for n in range(1,10):
+  tree = DecisionTreeClassifier(max_depth=n, random_state=0)
+  scores = cross_val_score(tree, X, y, cv=10, scoring='accuracy')
+  if  scores.mean() > max_score:
+    max_score = scores.mean()
+    max_n = n
+function_print = 'DecisionTreeClassifier:\t' + str(max_score) + '\t(max_depth=' + str(max_n) + ')'
+print(function_print)
+if max_score > best_score:
+  best_score = max_score
+  best_function=function_print
+\end{lstlisting}
+
+Tabela \ref{tab:resultado}.
+
+\setlength{\arrayrulewidth}{0.6mm}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c| }
+ \hline
+ Função                   & Acurácia           & Parâmetro  \\
+ \hline
+ KneighborsClassifier     & 0.9297619047619048 & n\_neighbors = 8  \\
+ DecisionTreeClassifier   & 0.9280701754385964 & max\_depth = 5    \\
+ RandomForestClassifier   & 0.9649122807017543 & max\_depth = 80   \\
+ SuppotVectorMachine      & 0.9051065162907269 &                   \\
+ GaussianNB               & 0.9367794486215537 &                   \\
+ MLPClassifier            & 0.8963032581453634 &                   \\
+ \hline
+ \hline
+ \multicolumn{3}{|c|}{ Melhor Função} \\
+ \hline
+ RandomForestClassifier:  & 0.9649122807017543 & max\_depth = 80   \\
+ \hline
+\end{tabular}
+  \caption{Resultado Final}
+\label{tab:resultado}
+\end{table}
+
+
+
+
+
+
+
+
+
